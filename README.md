@@ -13,10 +13,8 @@
 ## Installation
 
 ```shell
-cargo add standard-traits url
+cargo add standard-traits
 ```
-
-**Important:** add the `url` crate too.
 
 ## Gratitude
 

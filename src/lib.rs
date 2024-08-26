@@ -1,14 +1,19 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+#![cfg_attr(not(feature = "std"), no_std)]
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+extern crate alloc;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+mod contains;
+mod insert;
+mod len;
+mod push;
+mod push_get_ref;
+mod trim;
+mod try_insert;
+
+pub use contains::*;
+pub use insert::*;
+pub use len::*;
+pub use push::*;
+pub use push_get_ref::*;
+pub use trim::*;
+pub use try_insert::*;

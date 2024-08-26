@@ -2,5 +2,24 @@
 name = "standard-traits"
 version = "0.1.0"
 edition = "2021"
+description = "A collection of standard traits for better interoperability between crates"
+license = "Apache-2.0 OR MIT"
+homepage = "https://github.com/DenisGorbachev/standard-traits"
+repository = "https://github.com/DenisGorbachev/standard-traits"
+readme = "README.md"
+keywords = ["utils"]
+categories = ["development-tools", "rust-patterns"]
+
+[package.metadata.details]
+title = "A collection of standard traits for better interoperability between crates"
+tagline = ""
+summary = ""
+announcement = ""
 
 [dependencies]
+camino_1 = { package = "camino", version = "1.0.0", optional = true }
+indexmap_2 = { package = "indexmap", version = "2.0.0", optional = true }
+
+[features]
+default = ["std"]
+std = []

@@ -13,14 +13,14 @@ pre-commit:
       stage_fixed: true
     lint-code:
       run: cargo clippy --all-targets --all-features -- -D warnings
-    test-code:
-      run: cargo nextest run --no-fail-fast
     lint-docs:
       run: remark --ignore-path .gitignore --quiet --frail --no-stdout .
     test-docs:
       run: cargo test --doc
     lint-deps:
       run: cargo machete --with-metadata
+    test-all-features:
+      run: cargo hack test --feature-powerset
 commit-msg:
   commands:
     "lint commit message":

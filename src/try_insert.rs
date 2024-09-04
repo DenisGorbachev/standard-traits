@@ -1,4 +1,3 @@
-#[cfg(feature = "std")]
 pub trait TryInsert<K, V> {
     type Error<'a>
     where

@@ -41,6 +41,8 @@ jobs:
       -
         uses: Swatinem/rust-cache@v2.7.3
       -
+        run: cargo hack test --feature-powerset
+      -
         run: lefthook run --force pre-commit
       -
         run: cargo hack test --feature-powerset

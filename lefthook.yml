@@ -19,6 +19,7 @@ pre-commit:
       run: cargo test --doc
     sort-deps:
       run: cargo sort
+      stage_fixed: true
     lint-deps:
       run: cargo machete --with-metadata
     test-all-features:

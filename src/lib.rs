@@ -51,16 +51,28 @@
 extern crate alloc;
 
 mod contains;
+
+#[cfg(feature = "unstable_get")]
+mod get;
 mod insert;
+mod integration_tests;
 mod len;
+#[cfg(feature = "unstable_of")]
+mod of;
+mod provide;
 mod push;
 mod push_get_ref;
 mod trim;
 mod try_insert;
 
 pub use contains::*;
+#[cfg(feature = "unstable_get")]
+pub use get::*;
 pub use insert::*;
 pub use len::*;
+#[cfg(feature = "unstable_of")]
+pub use of::*;
+pub use provide::*;
 pub use push::*;
 pub use push_get_ref::*;
 pub use trim::*;

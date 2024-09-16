@@ -7,7 +7,56 @@
 [![Build](https://github.com/DenisGorbachev/standard-traits/actions/workflows/ci.yml/badge.svg)](https://github.com/DenisGorbachev/standard-traits)
 [![Documentation](https://docs.rs/standard-traits/badge.svg)](https://docs.rs/standard-traits)
 
+Standard Traits improve the interoperability between crates by defining a set of common functionality.
 
+For example, both [`std::collections::HashMap`][__link0] and [`indexmap_2::IndexMap`][__link1] have an `insert` method. However, we can’t write a function that accepts both types, since there is no `Insert` trait. This crate provides
+
+This crate provides implementations for types in `std`. In addition, it provides implementations for existing popular crates (for example: `indexmap`, `camino`).
+
+If you would like to implement the standard traits for your own types, please add `standard-traits` as a dependency and put the implementations in your crate (next to the types).
+
+### Recommendations for trait definitions
+
+* Parametrize every type
+  * Parametrize input type via trait parameter
+  * Parametrize output type via associated type
+* Provide the Self type as a default value for the every trait parameter
+
+Good example:
+
+```rust
+pub trait Join<Rhs = Self> {
+    type Output;
+
+    fn join(self, rhs: Rhs) -> Self::Output;
+}
+```
+
+Bad example 1:
+
+```rust
+pub trait Join {
+    type Output;
+
+    fn join(self, str: &str) -> Self::Output;
+}
+```
+
+The trait definition is too narrow: the `join` function only accepts an `&str` as a second argument.
+
+Bad example 2:
+
+```rust
+pub trait Join<Rhs = Self> {
+    fn join(self, rhs: Rhs) -> Self;
+}
+```
+
+Suppose there is a type that can’t implement `join` for any `rhs`, but it can implement for some `rhs`. In other words, `join` must return a `Result`. But this trait definition makes it impossible.
+
+   [__cargo_doc2readme_dependencies_info]: ggGkYW0BYXSEGyMws-dKI-LpG9swkVXG-rikGwSuJGhB0NVbG974QPrPJF6XYXKEG5x2u9bwn3l6G4hqm-c2sJFcG8QQBi8AHSO-G_mGPOmlf_9jYWSBgmhpbmRleG1hcGUyLjMuMA
+ [__link0]: https://doc.rust-lang.org/stable/std/?search=collections::HashMap
+ [__link1]: https://docs.rs/indexmap/2.3.0/indexmap/?search=IndexMap
 
 
 ## Installation

@@ -1,7 +1,11 @@
 #[cfg(feature = "std")]
 use std::path::{Path, PathBuf};
-#[cfg(feature = "syn_2")]
-use syn_2::{GenericParam, Lifetime, LifetimeParam};
+#[cfg(any(feature = "syn_2_full", feature = "syn_2_derive"))]
+use syn_2::punctuated::Punctuated;
+#[cfg(any(feature = "syn_2_full", feature = "syn_2_derive"))]
+use syn_2::{AngleBracketedGenericArguments, GenericArgument, GenericParam, Lifetime, LifetimeParam, Token};
+#[cfg(feature = "syn_2_full")]
+use syn_2::{File, Item};
 
 /// `Provide` is similar to `AsRef`, `Into`, `TryInto`. However, `Provide` allows specifying the return type, so the implementor may choose to return a `T`, `&T`, `Option<T>`, `Result<T, ...>`.
 ///
@@ -21,7 +25,7 @@ impl Provide<PathBuf> for &Path {
     }
 }
 
-#[cfg(feature = "syn_2")]
+#[cfg(any(feature = "syn_2_full", feature = "syn_2_derive"))]
 impl Provide<LifetimeParam> for syn_2::Lifetime {
     type Output = LifetimeParam;
 
@@ -35,11 +39,38 @@ impl Provide<LifetimeParam> for syn_2::Lifetime {
     }
 }
 
-#[cfg(feature = "syn_2")]
+#[cfg(any(feature = "syn_2_full", feature = "syn_2_derive"))]
 impl Provide<GenericParam> for Lifetime {
     type Output = GenericParam;
 
     fn provide(self) -> GenericParam {
         GenericParam::Lifetime(Provide::<LifetimeParam>::provide(self))
+    }
+}
+
+#[cfg(any(feature = "syn_2_full", feature = "syn_2_derive"))]
+impl Provide<AngleBracketedGenericArguments> for Punctuated<GenericArgument, Token![,]> {
+    type Output = AngleBracketedGenericArguments;
+
+    fn provide(self) -> AngleBracketedGenericArguments {
+        AngleBracketedGenericArguments {
+            colon2_token: None,
+            lt_token: Default::default(),
+            args: self,
+            gt_token: Default::default(),
+        }
+    }
+}
+
+#[cfg(feature = "syn_2_full")]
+impl Provide<File> for Item {
+    type Output = File;
+
+    fn provide(self) -> File {
+        File {
+            shebang: None,
+            attrs: vec![],
+            items: vec![self],
+        }
     }
 }

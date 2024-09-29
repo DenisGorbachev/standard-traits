@@ -17,12 +17,16 @@ summary = ""
 announcement = ""
 
 [dependencies]
-camino_1 = { package = "camino", version = "1.0.0", optional = true }
-indexmap_2 = { package = "indexmap", version = "2.0.0", optional = true }
-syn_2 = { package = "syn", version = "2.0.0", optional = true }
+camino_1 = { package = "camino", version = "1.0.0", optional = true, default-features = false }
+indexmap_2 = { package = "indexmap", version = "2.0.0", optional = true, default-features = false }
+syn_2 = { package = "syn", version = "2.0.0", optional = true, default-features = false }
 
 [features]
 default = ["std"]
 std = []
 unstable_get = []
 unstable_of = []
+syn_2 = ["dep:syn_2", "std"]
+syn_2_parsing = ["syn_2/parsing"]
+syn_2_derive = ["syn_2/derive"]
+syn_2_full = ["syn_2/full"]

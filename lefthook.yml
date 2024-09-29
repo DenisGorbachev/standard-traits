@@ -23,6 +23,8 @@ pre-commit:
     lint-deps:
       run: cargo machete --with-metadata
     test-all-features:
+      env:
+        RUSTFLAGS: "-D warnings"
       run: cargo hack test --feature-powerset
 commit-msg:
   commands:

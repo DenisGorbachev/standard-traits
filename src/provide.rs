@@ -1,7 +1,7 @@
 #[cfg(feature = "std")]
 use std::path::{Path, PathBuf};
 #[cfg(feature = "syn_2")]
-use syn_2::LifetimeParam;
+use syn_2::{GenericParam, Lifetime, LifetimeParam};
 
 /// `Provide` is similar to `AsRef`, `Into`, `TryInto`. However, `Provide` allows specifying the return type, so the implementor may choose to return a `T`, `&T`, `Option<T>`, `Result<T, ...>`.
 ///
@@ -32,5 +32,14 @@ impl Provide<LifetimeParam> for syn_2::Lifetime {
             colon_token: None,
             bounds: Default::default(),
         }
+    }
+}
+
+#[cfg(feature = "syn_2")]
+impl Provide<GenericParam> for Lifetime {
+    type Output = GenericParam;
+
+    fn provide(self) -> GenericParam {
+        GenericParam::Lifetime(Provide::<LifetimeParam>::provide(self))
     }
 }

@@ -17,6 +17,14 @@ If you would like to implement the standard traits for your own types, please ad
 
 ### Recommendations for trait definitions
 
+* Use a single verb
+  * Good: `Add`
+  * Bad: `Addition`
+* Define a single method per trait
+* Use the same name for the method as for the trait
+* Use full names
+  * Good: `Increment`
+  * Bad: `Inc`
 * Parametrize every type
   * Parametrize input type via trait parameter
   * Parametrize output type via associated type
@@ -54,7 +62,7 @@ pub trait Join<Rhs = Self> {
 
 Suppose there is a type that can’t implement `join` for any `rhs`, but it can implement for some `rhs`. In other words, `join` must return a `Result`. But this trait definition makes it impossible.
 
-   [__cargo_doc2readme_dependencies_info]: ggGkYW0BYXSEGyMws-dKI-LpG9swkVXG-rikGwSuJGhB0NVbG974QPrPJF6XYXKEG5x2u9bwn3l6G4hqm-c2sJFcG8QQBi8AHSO-G_mGPOmlf_9jYWSBgmhpbmRleG1hcGUyLjMuMA
+   [__cargo_doc2readme_dependencies_info]: ggGkYW0BYXSEGyMws-dKI-LpG9swkVXG-rikGwSuJGhB0NVbG974QPrPJF6XYXKEGwU8BfVSj5ebG4N-uLMHKWLDGwmjj2yU2HAhG05mwreBam7zYWSBgmhpbmRleG1hcGUyLjMuMA
  [__link0]: https://doc.rust-lang.org/stable/std/?search=collections::HashMap
  [__link1]: https://docs.rs/indexmap/2.3.0/indexmap/?search=IndexMap
 

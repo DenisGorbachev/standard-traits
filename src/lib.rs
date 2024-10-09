@@ -8,6 +8,14 @@
 //!
 //! ## Recommendations for trait definitions
 //!
+//! * Use a single verb
+//!   * Good: `Add`
+//!   * Bad: `Addition`
+//! * Define a single method per trait
+//! * Use the same name for the method as for the trait
+//! * Use full names
+//!   * Good: `Increment`
+//!   * Bad: `Inc`
 //! * Parametrize every type
 //!   * Parametrize input type via trait parameter
 //!   * Parametrize output type via associated type
@@ -77,5 +85,7 @@ pub use push::*;
 pub use push_get_ref::*;
 pub use trim::*;
 pub use try_insert::*;
+
 mod decrement;
+
 pub use decrement::*;

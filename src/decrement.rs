@@ -1,30 +1,30 @@
 use core::ops::SubAssign;
 
-pub trait Decrement {
-    fn decrement(self);
+pub trait DecrementMut {
+    fn decrement(&mut self);
 }
 
-impl Decrement for &mut u32 {
-    fn decrement(self) {
+impl DecrementMut for u32 {
+    fn decrement(&mut self) {
         self.sub_assign(1)
     }
 }
 
-impl Decrement for &mut u64 {
-    fn decrement(self) {
+impl DecrementMut for u64 {
+    fn decrement(&mut self) {
         self.sub_assign(1)
     }
 }
 
-impl Decrement for &mut usize {
-    fn decrement(self) {
+impl DecrementMut for usize {
+    fn decrement(&mut self) {
         self.sub_assign(1)
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use crate::Decrement;
+    use crate::DecrementMut;
 
     #[test]
     fn must_decrement_u32() {

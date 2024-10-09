@@ -86,6 +86,6 @@ pub use push_get_ref::*;
 pub use trim::*;
 pub use try_insert::*;
 
-mod decrement;
+mod decrement_mut;
 
-pub use decrement::*;
+pub use decrement_mut::*;

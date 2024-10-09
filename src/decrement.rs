@@ -10,6 +10,18 @@ impl Decrement for &mut u32 {
     }
 }
 
+impl Decrement for &mut u64 {
+    fn decrement(self) {
+        self.sub_assign(1)
+    }
+}
+
+impl Decrement for &mut usize {
+    fn decrement(self) {
+        self.sub_assign(1)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use crate::Decrement;

@@ -1,7 +1,6 @@
 use crate::Provide;
 
-///
-/// `Get` is an experimental trait that simplifies the use of [`Provide`]
+/// `Get` is an experimental trait that simplifies the use of [`Provide`].
 ///
 /// # Comparison
 ///

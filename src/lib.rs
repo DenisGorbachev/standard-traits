@@ -77,3 +77,5 @@ pub use push::*;
 pub use push_get_ref::*;
 pub use trim::*;
 pub use try_insert::*;
+mod decrement;
+pub use decrement::*;

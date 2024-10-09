@@ -1,3 +1,5 @@
+#[cfg(feature = "proc_macro2_1")]
+use proc_macro2_1::{Ident, Span};
 #[cfg(feature = "std")]
 use std::path::{Path, PathBuf};
 #[cfg(any(feature = "syn_2_full", feature = "syn_2_derive"))]
@@ -72,5 +74,14 @@ impl Provide<File> for Item {
             attrs: vec![],
             items: vec![self],
         }
+    }
+}
+
+#[cfg(feature = "proc_macro2_1")]
+impl Provide<Ident> for &str {
+    type Output = Ident;
+
+    fn provide(self) -> Ident {
+        Ident::new(self, Span::call_site())
     }
 }

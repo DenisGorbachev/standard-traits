@@ -1,6 +1,8 @@
 use crate::Provide;
 
-/// `Get` is an experimental trait that simplifies the use of [`Provide`].
+/// `Get` trait is a replacement for a simple getter function. For example: instead of writing `get_project_root(&path)`, you can write `path.get::<ProjectRoot>()`.
+///
+/// `Get` relies on [`Provide`]: every type that implements [`Provide`] also implements `Get` via a blanket implementation. Please implement [`Provide`] instead of `Get` for your types.
 ///
 /// # Comparison
 ///

@@ -9,9 +9,9 @@
 
 Standard Traits improve the interoperability between crates by defining a set of common functionality.
 
-For example, both [`std::collections::HashMap`][__link0] and [`indexmap_2::IndexMap`][__link1] have an `insert` method. However, we can’t write a function that accepts both types, since there is no `Insert` trait. This crate provides
+For example, both [`std::collections::HashMap`][__link0] and [`indexmap_2::IndexMap`][__link1] have an `insert` method. However, we can’t write a function that accepts both types, since there is no `Insert` trait. This crate provides a generic `Insert` trait & many others.
 
-This crate provides implementations for types in `std`. In addition, it provides implementations for existing popular crates (for example: `indexmap`, `camino`).
+This crate also provides implementations for types in `std` and other popular crates (for example: `indexmap`, `camino`).
 
 If you would like to implement the standard traits for your own types, please add `standard-traits` as a dependency and put the implementations in your crate (next to the types).
 
@@ -62,7 +62,7 @@ pub trait Join<Rhs = Self> {
 
 Suppose there is a type that can’t implement `join` for any `rhs`, but it can implement for some `rhs`. In other words, `join` must return a `Result`. But this trait definition makes it impossible.
 
-   [__cargo_doc2readme_dependencies_info]: ggGkYW0BYXSEGyMws-dKI-LpG9swkVXG-rikGwSuJGhB0NVbG974QPrPJF6XYXKEGwU8BfVSj5ebG4N-uLMHKWLDGwmjj2yU2HAhG05mwreBam7zYWSBgmhpbmRleG1hcGUyLjMuMA
+   [__cargo_doc2readme_dependencies_info]: ggGkYW0BYXSEGyMws-dKI-LpG9swkVXG-rikGwSuJGhB0NVbG974QPrPJF6XYXKEG4g09MndH0wQG5B81kql-xBEG6-ptzSfeGUSG9F3BZsEfBPSYWSBgmhpbmRleG1hcGUyLjMuMA
  [__link0]: https://doc.rust-lang.org/stable/std/?search=collections::HashMap
  [__link1]: https://docs.rs/indexmap/2.3.0/indexmap/?search=IndexMap
 

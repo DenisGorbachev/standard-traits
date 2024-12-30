@@ -1,8 +1,8 @@
 //! Standard Traits improve the interoperability between crates by defining a set of common functionality.
 //!
-//! For example, both [`std::collections::HashMap`] and [`indexmap_2::IndexMap`] have an `insert` method. However, we can't write a function that accepts both types, since there is no `Insert` trait. This crate provides
+//! For example, both [`std::collections::HashMap`] and [`indexmap_2::IndexMap`] have an `insert` method. However, we can't write a function that accepts both types, since there is no `Insert` trait. This crate provides a generic `Insert` trait & many others.
 //!
-//! This crate provides implementations for types in `std`. In addition, it provides implementations for existing popular crates (for example: `indexmap`, `camino`).
+//! This crate also provides implementations for types in `std` and other popular crates (for example: `indexmap`, `camino`).
 //!
 //! If you would like to implement the standard traits for your own types, please add `standard-traits` as a dependency and put the implementations in your crate (next to the types).
 //!
@@ -69,7 +69,7 @@ mod len;
 mod of;
 mod provide;
 mod push;
-mod push_get_ref;
+mod push_ret_ref;
 mod trim;
 mod try_insert;
 
@@ -82,12 +82,14 @@ pub use len::*;
 pub use of::*;
 pub use provide::*;
 pub use push::*;
-pub use push_get_ref::*;
+pub use push_ret_ref::*;
 pub use trim::*;
 pub use try_insert::*;
 
+mod create_file_all;
 mod decrement_mut;
 mod join;
 
+pub use create_file_all::*;
 pub use decrement_mut::*;
 pub use join::*;

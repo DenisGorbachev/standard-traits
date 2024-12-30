@@ -91,7 +91,9 @@ pub use try_insert::*;
 mod create_file_all;
 mod decrement_mut;
 mod join;
+mod write_file_all;
 
 pub use create_file_all::*;
 pub use decrement_mut::*;
 pub use join::*;
+pub use write_file_all::*;

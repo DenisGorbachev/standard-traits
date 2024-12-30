@@ -7,13 +7,13 @@ pub trait TryInsert<K, V> {
 }
 
 #[cfg(feature = "std")]
-pub mod hash_map_impl {
+mod impl_std {
     use super::*;
+    use core::hash::{BuildHasher, Hash};
     use std::collections::{
         hash_map::{Entry, OccupiedEntry},
         HashMap,
     };
-    use std::hash::{BuildHasher, Hash};
 
     // Note: There is HashMap::try_insert in std, but it's gated under `map_try_insert`
     impl<K, V, S> TryInsert<K, V> for HashMap<K, V, S>
@@ -45,11 +45,11 @@ pub mod hash_map_impl {
     }
 }
 
-#[cfg(all(feature = "indexmap_2", feature = "std"))]
-pub mod indexmap_2_impl {
+#[cfg(feature = "indexmap_2")]
+mod impl_indexmap_2 {
     use super::*;
+    use core::hash::{BuildHasher, Hash};
     use indexmap_2::map::{Entry, OccupiedEntry};
-    use std::hash::{BuildHasher, Hash};
 
     impl<K, V, S> TryInsert<K, V> for indexmap_2::IndexMap<K, V, S>
     where

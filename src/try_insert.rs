@@ -21,7 +21,8 @@ pub mod hash_map_impl {
         K: Eq + Hash,
         S: BuildHasher,
     {
-        type Error<'a> = OccupiedError<'a, K, V>
+        type Error<'a>
+            = OccupiedError<'a, K, V>
         where
             Self: 'a;
 
@@ -55,7 +56,8 @@ pub mod indexmap_2_impl {
         K: Eq + Hash,
         S: BuildHasher,
     {
-        type Error<'a> = OccupiedError<'a, K, V>
+        type Error<'a>
+            = OccupiedError<'a, K, V>
         where
             Self: 'a;
 

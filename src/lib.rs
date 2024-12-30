@@ -87,5 +87,7 @@ pub use trim::*;
 pub use try_insert::*;
 
 mod decrement_mut;
+mod join;
 
 pub use decrement_mut::*;
+pub use join::*;

@@ -34,19 +34,23 @@ where
 }
 
 #[cfg(feature = "camino_1")]
-impl Contains<camino_1::Utf8Path> for camino_1::Utf8Path {
-    fn contains(&self, other: &camino_1::Utf8Path) -> bool {
-        self.as_std_path().contains(other.as_std_path())
-    }
-}
+pub mod impl_camino_1 {
+    use super::*;
+    use camino_1::{Utf8Path, Utf8PathBuf};
 
-#[cfg(feature = "camino_1")]
-impl<T> Contains<T> for camino_1::Utf8PathBuf
-where
-    camino_1::Utf8Path: Contains<T>,
-    T: ?Sized,
-{
-    fn contains(&self, other: &T) -> bool {
-        self.as_path().contains(other)
+    impl Contains<Utf8Path> for Utf8Path {
+        fn contains(&self, other: &Utf8Path) -> bool {
+            self.as_std_path().contains(other.as_std_path())
+        }
+    }
+
+    impl<T> Contains<T> for Utf8PathBuf
+    where
+        Utf8Path: Contains<T>,
+        T: ?Sized,
+    {
+        fn contains(&self, other: &T) -> bool {
+            self.as_path().contains(other)
+        }
     }
 }

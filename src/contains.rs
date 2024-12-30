@@ -34,7 +34,7 @@ where
 }
 
 #[cfg(feature = "camino_1")]
-pub mod impl_camino_1 {
+mod impl_camino_1 {
     use super::*;
     use camino_1::{Utf8Path, Utf8PathBuf};
 

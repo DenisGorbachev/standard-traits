@@ -54,6 +54,8 @@
 //! Suppose there is a type that can't implement `join` for any `rhs`, but it can implement for some `rhs`. In other words, `join` must return a `Result`. But this trait definition makes it impossible.
 //!
 
+// TODO: Ensure that every `mod` in a trait file has `private` visibility
+
 #![cfg_attr(not(feature = "std"), no_std)]
 
 extern crate alloc;

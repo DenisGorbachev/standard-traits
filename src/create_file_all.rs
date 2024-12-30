@@ -7,7 +7,7 @@ pub trait CreateFileAll {
 }
 
 #[cfg(feature = "std")]
-pub mod impl_std {
+mod impl_std {
     use super::*;
     use std::fs::{create_dir_all, File, OpenOptions};
     use std::io;
@@ -30,7 +30,7 @@ pub mod impl_std {
 }
 
 #[cfg(feature = "tempfile_3")]
-pub mod impl_tempfile_3 {
+mod impl_tempfile_3 {
     use super::*;
     use std::path::Path;
     use tempfile_3::TempDir;

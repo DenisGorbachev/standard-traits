@@ -1,6 +1,7 @@
 use alloc::string::String;
 use alloc::string::ToString;
 
+// TODO: Rename to TrimMut
 pub trait Trim {
     fn trim(&mut self);
 }

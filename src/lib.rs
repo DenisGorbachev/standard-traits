@@ -97,3 +97,7 @@ pub use create_file_all::*;
 pub use decrement_mut::*;
 pub use join::*;
 pub use write_file_all::*;
+
+mod map_self;
+
+pub use map_self::*;

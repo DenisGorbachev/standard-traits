@@ -12,13 +12,14 @@
 //!   * Good: `Add`
 //!   * Bad: `Addition`
 //! * Define a single method per trait
-//! * Use the same name for the method as for the trait
+//! * Use the same name for the trait & for the method
 //! * Use full names
 //!   * Good: `Increment`
 //!   * Bad: `Inc`
 //! * Parametrize every type
-//!   * Parametrize input type via trait parameter
-//!   * Parametrize output type via associated type
+//!   * Parametrize every input type via trait parameter
+//!   * Parametrize the output type via associated type
+//!     * Note that implementors can set `type Output = ()` for methods that shouldn't return anything (for example: mutators)
 //! * Provide the Self type as a default value for the every trait parameter
 //!
 //! Good example:
@@ -101,3 +102,7 @@ pub use write_file_all::*;
 mod map_self;
 
 pub use map_self::*;
+
+mod is_empty;
+
+pub use is_empty::*;

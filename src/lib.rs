@@ -54,6 +54,20 @@
 //!
 //! Suppose there is a type that can't implement `join` for any `rhs`, but it can implement for some `rhs`. In other words, `join` must return a `Result`. But this trait definition makes it impossible.
 //!
+//! ## Recommendations for dependency definitions
+//!
+//! * Every dependency name must have a version suffix
+//!   * If the dependency has a major version >= 1, then the dependency name must have a suffix that is equal to the major version
+//!     * Good: `camino_1 = { package = "camino", version = "1.0.0", optional = true, default-features = false }`
+//!     * Bad (suffix must not contain the minor and patch version): `camino_1_0_0 = { package = "camino", version = "1.0.0", optional = true, default-features = false }`
+//!     * Bad (suffix must be present): `camino = { package = "camino", version = "1.0.0", optional = true, default-features = false }`
+//!   * If the dependency has a major version == 0, then the dependency name must have a suffix that is equal to the major version and minor version
+//!     * Good: `foo_0_1 = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
+//!     * Bad (suffix must contain the minor version): `foo_0 = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
+//!     * Bad (suffix must not contain the patch version): `foo_0_1_0 = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
+//!     * Bad (suffix must be present): `foo = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
+//! * Every dependency must have at least one entry in the `features` table
+//!
 
 // TODO: Ensure that every `mod` in a trait file has `private` visibility
 

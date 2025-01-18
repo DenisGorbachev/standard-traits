@@ -120,3 +120,5 @@ pub use map_self::*;
 mod is_empty;
 
 pub use is_empty::*;
+mod is_uppercase;
+pub use is_uppercase::*;

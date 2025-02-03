@@ -25,3 +25,23 @@ impl Append<String> for String {
         self
     }
 }
+
+#[cfg(feature = "std")]
+mod impl_std {
+    use crate::Append;
+    use std::ffi::{OsStr, OsString};
+
+    impl Append<&OsStr> for OsString {
+        fn append(mut self, value: &OsStr) -> Self {
+            self.push(value);
+            self
+        }
+    }
+
+    impl Append<OsString> for OsString {
+        fn append(mut self, value: OsString) -> Self {
+            self.push(value.as_os_str());
+            self
+        }
+    }
+}

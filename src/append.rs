@@ -44,4 +44,18 @@ mod impl_std {
             self
         }
     }
+
+    impl Append<&str> for OsString {
+        fn append(mut self, value: &str) -> Self {
+            self.push(value);
+            self
+        }
+    }
+
+    impl Append<String> for OsString {
+        fn append(mut self, value: String) -> Self {
+            self.push(value.as_str());
+            self
+        }
+    }
 }

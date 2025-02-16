@@ -5,7 +5,6 @@
 # A collection of standard traits for better interoperability between crates
 
 [![Build](https://github.com/DenisGorbachev/standard-traits/actions/workflows/ci.yml/badge.svg)](https://github.com/DenisGorbachev/standard-traits)
-[![Documentation](https://docs.rs/standard-traits/badge.svg)](https://docs.rs/standard-traits)
 
 Standard Traits improve the interoperability between crates by defining a set of common functionality.
 
@@ -21,13 +20,14 @@ If you would like to implement the standard traits for your own types, please ad
   * Good: `Add`
   * Bad: `Addition`
 * Define a single method per trait
-* Use the same name for the method as for the trait
+* Use the same name for the trait & for the method
 * Use full names
   * Good: `Increment`
   * Bad: `Inc`
 * Parametrize every type
-  * Parametrize input type via trait parameter
-  * Parametrize output type via associated type
+  * Parametrize every input type via trait parameter
+  * Parametrize the output type via associated type
+    * Note that implementors can set `type Output = ()` for methods that shouldn’t return anything (for example: mutators)
 * Provide the Self type as a default value for the every trait parameter
 
 Good example:
@@ -62,10 +62,23 @@ pub trait Join<Rhs = Self> {
 
 Suppose there is a type that can’t implement `join` for any `rhs`, but it can implement for some `rhs`. In other words, `join` must return a `Result`. But this trait definition makes it impossible.
 
-   [__cargo_doc2readme_dependencies_info]: ggGkYW0BYXSEGyMws-dKI-LpG9swkVXG-rikGwSuJGhB0NVbG974QPrPJF6XYXKEG4g09MndH0wQG5B81kql-xBEG6-ptzSfeGUSG9F3BZsEfBPSYWSBgmhpbmRleG1hcGUyLjMuMA
+### Recommendations for dependency definitions
+
+* Every dependency name must have a version suffix
+  * If the dependency has a major version >= 1, then the dependency name must have a suffix that is equal to the major version
+    * Good: `camino_1 = { package = "camino", version = "1.0.0", optional = true, default-features = false }`
+    * Bad (suffix must not contain the minor and patch version): `camino_1_0_0 = { package = "camino", version = "1.0.0", optional = true, default-features = false }`
+    * Bad (suffix must be present): `camino = { package = "camino", version = "1.0.0", optional = true, default-features = false }`
+  * If the dependency has a major version == 0, then the dependency name must have a suffix that is equal to the major version and minor version
+    * Good: `foo_0_1 = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
+    * Bad (suffix must contain the minor version): `foo_0 = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
+    * Bad (suffix must not contain the patch version): `foo_0_1_0 = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
+    * Bad (suffix must be present): `foo = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
+* Every dependency must have at least one entry in the `features` table
+
+   [__cargo_doc2readme_dependencies_info]: ggGkYW0BYXSEGyMws-dKI-LpG9swkVXG-rikGwSuJGhB0NVbG974QPrPJF6XYXKEGyUpx5BgV5hhGxfUxxGsphPWG0YUTVGTnhy8GwuP4mLPvScFYWSBgmhpbmRleG1hcGUyLjMuMA
  [__link0]: https://doc.rust-lang.org/stable/std/?search=collections::HashMap
  [__link1]: https://docs.rs/indexmap/2.3.0/indexmap/?search=IndexMap
-
 
 ## Installation
 

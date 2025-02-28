@@ -41,7 +41,7 @@ run = "mise run remark ."
 run = "cargo machete --with-metadata"
 
 [tasks."test:code"]
-run = "cargo nextest run"
+run = "cargo nextest run --all-features"
 
 [tasks."test:docs"]
 run = "cargo test --doc"

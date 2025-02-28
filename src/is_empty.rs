@@ -55,6 +55,7 @@ impl<T> IsEmpty for &Vec<T> {
 #[cfg(feature = "std")]
 mod impl_std {
     use super::*;
+    use std::collections::HashMap;
     use std::path::{Path, PathBuf};
 
     impl IsEmpty for PathBuf {
@@ -72,6 +73,12 @@ mod impl_std {
     impl IsEmpty for &Path {
         fn is_empty(&self) -> bool {
             self.as_os_str().is_empty()
+        }
+    }
+
+    impl<K, V, S> IsEmpty for HashMap<K, V, S> {
+        fn is_empty(&self) -> bool {
+            self.is_empty()
         }
     }
 }

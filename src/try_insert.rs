@@ -45,6 +45,9 @@ mod impl_std {
     }
 }
 
+#[cfg(feature = "std")]
+pub use impl_std::OccupiedError as StdOccupiedError;
+
 #[cfg(feature = "indexmap_2")]
 mod impl_indexmap_2 {
     use super::*;
@@ -79,3 +82,6 @@ mod impl_indexmap_2 {
         pub value: V,
     }
 }
+
+#[cfg(feature = "indexmap_2")]
+pub use impl_indexmap_2::OccupiedError as IndexMap2OccupiedError;

@@ -69,7 +69,8 @@
 //! * Every dependency must have at least one entry in the `features` table
 //!
 
-// TODO: Ensure that every `mod` in a trait file has `private` visibility
+// TODO: Ensure that every `mod` in a trait file has `pub` visibility (we need to publish the try_insert::impl_indexmap_2::OccupiedError)
+// TODO: Looks like we have to abandon the global export system through `pub use ...::*`
 
 #![cfg_attr(not(feature = "std"), no_std)]
 

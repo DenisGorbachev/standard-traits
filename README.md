@@ -76,9 +76,9 @@ Suppose there is a type that can’t implement `join` for any `rhs`, but it can 
     * Bad (suffix must be present): `foo = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
 * Every dependency must have at least one entry in the `features` table
 
-   [__cargo_doc2readme_dependencies_info]: ggGkYW0BYXSEGyMws-dKI-LpG9swkVXG-rikGwSuJGhB0NVbG974QPrPJF6XYXKEGyUpx5BgV5hhGxfUxxGsphPWG0YUTVGTnhy8GwuP4mLPvScFYWSBgmhpbmRleG1hcGUyLjMuMA
+   [__cargo_doc2readme_dependencies_info]: ggGkYW0BYXSEGyMws-dKI-LpG9swkVXG-rikGwSuJGhB0NVbG974QPrPJF6XYXKEGyUpx5BgV5hhGxfUxxGsphPWG0YUTVGTnhy8GwuP4mLPvScFYWSBgmhpbmRleG1hcGUyLjkuMA
  [__link0]: https://doc.rust-lang.org/stable/std/?search=collections::HashMap
- [__link1]: https://docs.rs/indexmap/2.3.0/indexmap/?search=IndexMap
+ [__link1]: https://docs.rs/indexmap/2.9.0/indexmap/?search=IndexMap
 
 ## Installation
 

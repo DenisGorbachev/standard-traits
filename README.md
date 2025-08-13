@@ -4,8 +4,6 @@
 
 # A collection of standard traits for better interoperability between crates
 
-[![Build](https://github.com/DenisGorbachev/standard-traits/actions/workflows/ci.yml/badge.svg)](https://github.com/DenisGorbachev/standard-traits)
-
 Standard Traits improve the interoperability between crates by defining a set of common functionality.
 
 For example, both [`std::collections::HashMap`][__link0] and [`indexmap_2::IndexMap`][__link1] have an `insert` method. However, we can’t write a function that accepts both types, since there is no `Insert` trait. This crate provides a generic `Insert` trait & many others.

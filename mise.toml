@@ -1,7 +1,7 @@
 min_version = "2025.1.14"
 
 [tools]
-rust = "stable"
+rust = "1.89.0"
 node = "22.12.0"
 deno = "1.46.1"
 cargo-binstall = "1.10.15"
@@ -16,8 +16,7 @@ cargo-binstall = "1.10.15"
 "cargo:cargo-sort" = "1.0.9"
 "cargo:cargo-hack" = "0.6.33"
 "cargo:cargo-machete" = "0.7.0"
-"cargo:cargo-nextest" = "0.9.72"
-"aqua:sclevine/yj" = "5.1.0"
+"cargo:cargo-nextest" = "0.9.102"
 
 [tasks."build"]
 run = "cargo build"
@@ -41,13 +40,26 @@ run = "mise run remark ."
 run = "cargo machete --with-metadata"
 
 [tasks."test:code"]
-run = "cargo nextest run --all-features"
+run = "cargo nextest run --all-features --no-tests warn"
 
 [tasks."test:docs"]
-run = "cargo test --doc"
+run = "cargo test --doc --all-features --no-fail-fast --quiet"
 
 [tasks."sort:deps"]
 run = "cargo sort"
+
+[tasks."check"]
+run = "cargo check --all-targets --all-features"
+
+[tasks."fix"]
+depends = ["fix:code", "fix:deps"]
+
+[tasks."fix:code"]
+env = { __CARGO_FIX_YOLO = 'yeah' }
+run = "cargo clippy --fix --allow-dirty --allow-staged"
+
+[tasks."fix:deps"]
+run = "cargo machete --with-metadata --fix"
 
 [tasks."watch"]
 run = """
@@ -58,13 +70,6 @@ CMD_RAW="nextest run $*"
 CMD_NO_WHITESPACE="$(echo -e "${CMD_RAW}" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
 cargo watch --clear --watch "$PWD" --exec "$CMD_NO_WHITESPACE" "$@"
 """
-
-[tasks."check"]
-run = "cargo check --all-targets --all-features"
-
-[tasks."fix"]
-env = { __CARGO_FIX_YOLO = 'yeah' }
-run = "cargo clippy --fix --allow-dirty --allow-staged"
 
 [tasks."gen:readme"]
 run = "./README.ts --output README.md"
@@ -77,3 +82,17 @@ REMARK_VALIDATE_LINKS="$(mise where npm:remark-validate-links)/lib/node_modules/
 REMARK_LINT_NO_DEAD_URLS="$(mise where npm:remark-lint-no-dead-urls)/lib/node_modules/remark-lint-no-dead-urls/index.js"
 remark --ignore-path .gitignore --ignore-pattern CHANGELOG.md --quiet --frail --no-stdout --use "$REMARK_VALIDATE_LINKS" --use "$REMARK_LINT_NO_DEAD_URLS" "$@"
 """
+
+[tasks."commitlint"]
+run = "commitlint --extends \"$(mise where npm:@commitlint/config-conventional)/lib/node_modules/@commitlint/config-conventional/lib/index.js\""
+
+[tasks."agent:on:stop"]
+depends = ["agent:test", "lint", "fmt", "sort:deps"]
+
+[tasks."agent:test"]
+depends = ["agent:test:code", "test:docs"]
+
+[tasks."agent:test:code"]
+# don't include `--fail-fast` because it's better to let the agent see all failures
+# reduce output to save tokens
+run = "mise run test:code -- --cargo-quiet --hide-progress-bar --status-level fail --final-status-level flaky"

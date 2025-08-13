@@ -1,7 +1,7 @@
 [package]
 name = "standard-traits"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 description = "A collection of standard traits for better interoperability between crates"
 license = "Apache-2.0 OR MIT"
 homepage = "https://github.com/DenisGorbachev/standard-traits"

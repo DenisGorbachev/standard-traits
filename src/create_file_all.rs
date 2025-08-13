@@ -9,7 +9,7 @@ pub trait CreateFileAll {
 #[cfg(feature = "std")]
 mod impl_std {
     use super::*;
-    use std::fs::{create_dir_all, File, OpenOptions};
+    use std::fs::{File, OpenOptions, create_dir_all};
     use std::io;
     use std::path::Path;
 

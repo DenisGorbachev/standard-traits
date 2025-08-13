@@ -11,8 +11,8 @@ mod impl_std {
     use super::*;
     use core::hash::{BuildHasher, Hash};
     use std::collections::{
-        hash_map::{Entry, OccupiedEntry},
         HashMap,
+        hash_map::{Entry, OccupiedEntry},
     };
 
     // Note: There is HashMap::try_insert in std, but it's gated under `map_try_insert`

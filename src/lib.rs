@@ -128,3 +128,7 @@ mod is_uppercase;
 pub use is_uppercase::*;
 
 pub use append::*;
+
+mod opt_from;
+
+pub use opt_from::*;

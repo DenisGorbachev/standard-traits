@@ -11,7 +11,7 @@ use syn_2::{File, Item};
 
 /// `Provide` is similar to `AsRef`, `Into`, `TryInto`. However, `Provide` allows specifying the return type, so the implementor may choose to return a `T`, `&T`, `Option<T>`, `Result<T, ...>`.
 ///
-/// `Provide` is frequently used with [`Get`] (see its documentation for details).
+/// `Provide` is frequently used with `Get` (see its documentation for details).
 pub trait Provide<T: ?Sized> {
     type Output;
 

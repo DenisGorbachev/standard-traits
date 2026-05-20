@@ -10,6 +10,22 @@ repository = "https://github.com/DenisGorbachev/standard-traits"
 readme = "README.md"
 keywords = ["utils"]
 categories = ["development-tools", "rust-patterns"]
+exclude = [
+    ".*",
+    "*.local.*",
+    "doc/dev",
+    "specs",
+    "README.ts",
+    "AGENTS*.md",
+    "CLAUDE*.md",
+    "deno.json",
+    "commitlint.config.mjs",
+    "lefthook.yml",
+    "mise.toml",
+    "rumdl.toml",
+    "rustfmt.toml",
+    ".yolobox"
+]
 
 [package.metadata.details]
 title = "A collection of standard traits for better interoperability between crates"

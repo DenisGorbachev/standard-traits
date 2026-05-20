@@ -1,6 +1,6 @@
 //! Standard Traits improve the interoperability between crates by defining a set of common functionality.
 //!
-//! For example, both [`std::collections::HashMap`] and [`indexmap_2::IndexMap`] have an `insert` method. However, we can't write a function that accepts both types, since there is no `Insert` trait. This crate provides a generic `Insert` trait & many others.
+//! For example, both `std::collections::HashMap` and `indexmap::IndexMap` have an `insert` method. However, we can't write a function that accepts both types, since there is no `Insert` trait. This crate provides a generic `Insert` trait & many others.
 //!
 //! This crate also provides implementations for types in `std` and other popular crates (for example: `indexmap`, `camino`).
 //!
@@ -72,6 +72,7 @@
 // TODO: Ensure that every `mod` in a trait file has `pub` visibility (we need to publish the try_insert::impl_indexmap_2::OccupiedError)
 // TODO: Looks like we have to abandon the global export system through `pub use ...::*`
 
+#![deny(clippy::arithmetic_side_effects)]
 #![cfg_attr(not(feature = "std"), no_std)]
 
 extern crate alloc;
@@ -105,12 +106,10 @@ pub use trim::*;
 pub use try_insert::*;
 
 mod create_file_all;
-mod decrement_mut;
 mod join;
 mod write_file_all;
 
 pub use create_file_all::*;
-pub use decrement_mut::*;
 pub use join::*;
 pub use write_file_all::*;
 

@@ -508,8 +508,8 @@ tempfile_3 = ["dep:tempfile_3", "std"]
 if_missing = "error"
 
 [providers]
-keychain = { type = "keychain", service = "rust-pre-public-lib-template" }
-pass = { type = "password-store", prefix = "rust-pre-public-lib-template/" }
+keychain = { type = "keychain", service = "standard-traits" }
+pass = { type = "password-store", prefix = "standard-traits/" }
 ```
 
 ### src/lib.rs

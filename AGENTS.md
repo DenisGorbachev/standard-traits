@@ -649,5 +649,4 @@ mod opt_from;
 
 pub use opt_from::*;
 mod set;
-pub use set::*;
 ````

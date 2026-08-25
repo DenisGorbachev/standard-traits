@@ -29,6 +29,7 @@ impl Append<String> for String {
 #[cfg(feature = "std")]
 mod impl_std {
     use crate::Append;
+    use alloc::string::String;
     use std::ffi::{OsStr, OsString};
 
     impl Append<&OsStr> for OsString {

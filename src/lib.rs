@@ -72,10 +72,11 @@
 // TODO: Ensure that every `mod` in a trait file has `pub` visibility (we need to publish the try_insert::impl_indexmap_2::OccupiedError)
 // TODO: Looks like we have to abandon the global export system through `pub use ...::*`
 
-#![deny(clippy::arithmetic_side_effects)]
-#![cfg_attr(not(feature = "std"), no_std)]
+#![no_std]
 
 extern crate alloc;
+#[cfg(feature = "std")]
+extern crate std;
 
 mod contains;
 

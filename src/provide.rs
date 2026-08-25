@@ -1,3 +1,5 @@
+#[cfg(any(feature = "syn_2_full", feature = "syn_2_derive"))]
+use alloc::vec;
 #[cfg(feature = "proc_macro2_1")]
 use proc_macro2_1::{Ident, Span};
 #[cfg(feature = "std")]

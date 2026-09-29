@@ -522,7 +522,20 @@ Examples:
       - Then: "\n\n" and a Markdown nested list of fixes where each fix must have a format `{number}. {description}` (the numbers should start from 1 for each list of fixes)
       - Else: the exact text "none."
 
-### Project files
+#### Publishable package
+
+A package that has a remote whose name contains `public` or `pre-public` and ends with `template`.
+
+## Project info
+
+### `git remote`
+
+```shell
+origin
+repoconf-rust-pre-public-lib-template
+```
+
+## Project files
 
 ### mise.toml
 
@@ -804,7 +817,7 @@ tempfile_3 = ["dep:tempfile_3", "std"]
 #fs_err_3 = ["dep:fs_err_3"]
 ```
 
-#### src/lib.rs
+### src/lib.rs
 
 ````rust
 //! Standard Traits improve the interoperability between crates by defining a set of common functionality.

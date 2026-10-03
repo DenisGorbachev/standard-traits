@@ -741,7 +741,6 @@ exclude = [
     "CargoMetadata.ts",
     "README.ts",
     "AGENTS*.md",
-    "CLAUDE*.md",
     "deno.lock",
     "deno.json",
     "clippy.toml",

@@ -17,19 +17,19 @@ If you would like to implement the standard traits for your own types, please ad
 
 ## Recommendations for trait definitions
 
-* Use a single verb
-  * Good: `Add`
-  * Bad: `Addition`
-* Define a single method per trait
-* Use the same name for the trait & for the method
-* Use full names
-  * Good: `Increment`
-  * Bad: `Inc`
-* Parametrize every type
-  * Parametrize every input type via trait parameter
-  * Parametrize the output type via associated type
-    * Note that implementors can set `type Output = ()` for methods that shouldn't return anything (for example: mutators)
-* Provide the Self type as a default value for the every trait parameter
+- Use a single verb
+  - Good: `Add`
+  - Bad: `Addition`
+- Define a single method per trait
+- Use the same name for the trait & for the method
+- Use full names
+  - Good: `Increment`
+  - Bad: `Inc`
+- Parametrize every type
+  - Parametrize every input type via trait parameter
+  - Parametrize the output type via associated type
+    - Note that implementors can set `type Output = ()` for methods that shouldn't return anything (for example: mutators)
+- Provide the Self type as a default value for the every trait parameter
 
 Good example:
 
@@ -65,17 +65,17 @@ Suppose there is a type that can't implement `join` for any `rhs`, but it can im
 
 ## Recommendations for dependency definitions
 
-* Every dependency name must have a version suffix
-  * If the dependency has a major version >= 1, then the dependency name must have a suffix that is equal to the major version
-    * Good: `camino_1 = { package = "camino", version = "1.0.0", optional = true, default-features = false }`
-    * Bad (suffix must not contain the minor and patch version): `camino_1_0_0 = { package = "camino", version = "1.0.0", optional = true, default-features = false }`
-    * Bad (suffix must be present): `camino = { package = "camino", version = "1.0.0", optional = true, default-features = false }`
-  * If the dependency has a major version == 0, then the dependency name must have a suffix that is equal to the major version and minor version
-    * Good: `foo_0_1 = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
-    * Bad (suffix must contain the minor version): `foo_0 = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
-    * Bad (suffix must not contain the patch version): `foo_0_1_0 = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
-    * Bad (suffix must be present): `foo = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
-* Every dependency must have at least one entry in the `features` table
+- Every dependency name must have a version suffix
+  - If the dependency has a major version >= 1, then the dependency name must have a suffix that is equal to the major version
+    - Good: `camino_1 = { package = "camino", version = "1.0.0", optional = true, default-features = false }`
+    - Bad (suffix must not contain the minor and patch version): `camino_1_0_0 = { package = "camino", version = "1.0.0", optional = true, default-features = false }`
+    - Bad (suffix must be present): `camino = { package = "camino", version = "1.0.0", optional = true, default-features = false }`
+  - If the dependency has a major version == 0, then the dependency name must have a suffix that is equal to the major version and minor version
+    - Good: `foo_0_1 = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
+    - Bad (suffix must contain the minor version): `foo_0 = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
+    - Bad (suffix must not contain the patch version): `foo_0_1_0 = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
+    - Bad (suffix must be present): `foo = { package = "foo", version = "0.1.0", optional = true, default-features = false }`
+- Every dependency must have at least one entry in the `features` table
 
 <!-- crate documentation end -->
 

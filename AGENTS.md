@@ -785,6 +785,7 @@ unstable_of = []
 camino_1 = ["dep:camino_1", "std"]
 indexmap_2 = ["dep:indexmap_2"]
 proc_macro2_1 = ["dep:proc_macro2_1"]
+# TODO: Think about the syn feature relationships
 syn_2 = ["syn_2_derive"]
 syn_2_parsing = ["syn_2", "syn_2/parsing"]
 syn_2_derive = ["dep:syn_2", "syn_2/derive", "std"]
